@@ -21,6 +21,7 @@
     import UserPanel from "./UserPanel";
     import MeetingsPage from "./meetings/MeetingsPage";
 
+
     export default {
         components: {LoginForm, MeetingsPage, UserPanel},
 		

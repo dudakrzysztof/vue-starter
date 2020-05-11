@@ -12,12 +12,14 @@
             <td>{{ meeting.name }}</td>
             <td>{{ meeting.description }}</td>
             <td>
-				<ol>
-					<li v-for="item in participants" :key="item.id">{{ item }}</li>
-				</ol>
+				<ul>
+					<li v-for="username in meeting.participants" :key="username">{{ username }}</li>
+				</ul>
 			</td>
-			<button @click="addParticipants(username)" style="float: right; ">ZAPISZ SIĘ</button>
-			<button style="float: right; padding-left:20px;">USUŃ PUSTE SPOTKANIE</button>
+			<button v-if="meeting.participants.indexOf(username) < 0" @click="joinMeeting(meeting)" style="float: right; margin-right: 8px;">ZAPISZ SIĘ</button>
+			<button v-else @click="leaveMeeting(meeting)" style="float: right;" >WYPISZ SIĘ</button>
+			
+			<button v-if="meeting.participants.length === 0" @click = "removeMeeting(meeting)" style="float: right; margin-right: 8px;">USUŃ PUSTE SPOTKANIE</button>
         </tr>
         </tbody>
     </table>
@@ -26,16 +28,18 @@
 <script>
     export default {
         props: ['meetings', 'username'],
-		data() {
-            return {
-                participants: []
+		methods: {
+			joinMeeting(meeting) {
+				this.$emit('joinMeeting', meeting)
+			},
+			removeMeeting(meeting) {
+				this.$emit('removeMeeting', meeting);
+			},
+            leaveMeeting(meeting) {
+                this.$emit('leaveMeeting', meeting)
             }
-        },
-        methods: {
-            addParticipants(username) {
-                this.participants.push(username);
-            }
+		}
         }
 		
-    }
+
 </script>
