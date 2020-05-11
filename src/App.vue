@@ -15,6 +15,7 @@
 </template>
 
 <script>
+
     import "milligram";
     import LoginForm from "./LoginForm";
     import UserPanel from "./UserPanel";
@@ -22,6 +23,7 @@
 
     export default {
         components: {LoginForm, MeetingsPage, UserPanel},
+		
         data() {
             return {
                 authenticatedUsername: '',

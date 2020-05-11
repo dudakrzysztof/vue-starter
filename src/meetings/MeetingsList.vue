@@ -11,11 +11,11 @@
         <tr v-for="meeting in meetings" :key="meeting.name">
             <td>{{ meeting.name }}</td>
             <td>{{ meeting.description }}</td>
-            <tr>
+            <td>
 				<ol>
 					<li v-for="item in participants" :key="item.id">{{ item }}</li>
 				</ol>
-			</tr>
+			</td>
 			<button @click="addParticipants(username)" style="float: right; ">ZAPISZ SIĘ</button>
 			<button style="float: right; padding-left:20px;">USUŃ PUSTE SPOTKANIE</button>
         </tr>
